@@ -77,3 +77,8 @@ Part D: Forward-Engineering the Model to PostGIS
 | No comma after the last line | Syntax rule: the final column or constraint definition in a `CREATE TABLE` block shouldn't have a trailing comma. |
 
 - After running the schema.sql, 3 tables were created under the gis_db → Schemas → lab6 → Tables. These are 'parcels', 'buildings' & 'roads'
+
+Part E: Loading a Tiny Spatial Scenario and Verifying It
+- For this part, i used a tiny dataset so i can trace each row back to the model. this is written in the seed.sql
+- Afterwards 4 queries were created to find: (a) persistent state, area derived from geometry, (b) Building -> Parcel through the foreign key, (c) the building actually inside its parcel, and (d)the road within 15 m of the parcel.
+- the results were displayed in the query_result.md file.
