@@ -32,6 +32,6 @@ Part B: From Objects to Persistent State
 | Building -> Parcel relationship | **Yes** | We need a way to link buildings to their specific parcels, otherwise the system won't know which building sits on which land parcel. |
 | Road id, road_class, geometry | **Yes** | Important road network data. Saving this allows us to run checks like how far a property is from the nearest road. |
 | SpatialRule.evaluate() | **No** | This is just code running a check in the background. It does work during runtime, but it isn't data you store in a table. |
-| **Extra row:** Parcel.area_sqm | **No** | Storing this directly isn't needed and can get outdated if geometry changes. We can just calculate the area from the geometry whenever we need it. |
+| Parcel.area_sqm | **No** | Storing this directly isn't needed and can get outdated if geometry changes. We can just calculate the area from the geometry whenever we need it. |
 | MinimumAreaRule._min_area | **No** | Just a rule threshold/config setting |
 | Parcel.intersects() | **No** | Swapped out for PostGIS `ST_Intersects` or `ST_Within` |
