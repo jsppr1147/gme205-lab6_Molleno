@@ -39,4 +39,41 @@ Part B: From Objects to Persistent State
 
 Part C: Converting the Object Model to a Relational Model  
 - for this part, similar to the UML diagrams for the object modeling on lab5, relational database diagrams were created.
-- this is saved in the diagrams folder as 'lab6_relational_model.png'
+- this is saved in the diagrams folder as 'lab6_relational_model.png'   
+
+Part D: Forward-Engineering the Model to PostGIS  
+- For this part, the relational database model is now converted into SQL.
+- a dedicated schema was created, following the template indicated in the lab manual.
+
+CREATE TABLE lab6.buildings (
+ building_id TEXT PRIMARY KEY,
+ parcel_id TEXT NOT NULL,
+ floors INTEGER NOT NULL,
+ geom geometry(Polygon, 32651) NOT NULL,
+ -- TODO: add the foreign-key constraint
+);
+
+-  the line 'FOREIGN KEY (parcel_id) REFERENCES lab6.parcels(parcel_id)' was replaced in the TODO part of the building tables.
+- Following the template of the structuring of the parcel and building object, the roads object was created. 
+
+CREATE TABLE lab6.roads (
+    road_id    TEXT PRIMARY KEY,
+    road_class TEXT NOT NULL,
+    geom       geometry(LineString, 32651) NOT NULL
+);
+
+- Some key takeaways when writing the sql file:  
+
+| SQL / Concept | Explanation |
+| :--- | :--- |
+| `CREATE SCHEMA lab6` | Creates a dedicated folder inside the database to keep all your lab tables organized together. |
+| `SET search_path` | Tells PostgreSQL to look in `lab6` first for tables, then fall back to `public` (where PostGIS features live). |
+| `CREATE TABLE ... ( ... )` | Sets up a new table where each line inside defines a column name followed by its data type. |
+| `TEXT`, `INTEGER` | Standard data types: `TEXT` stores plain text strings, while `INTEGER` holds whole numbers. |
+| `PRIMARY KEY` | Gives each row a unique identifier so no two rows are identical and values can't be left blank. |
+| `NOT NULL` | A constraint ensuring the column can never be empty—it must always contain a value. |
+| `geometry(Polygon, 32651)` | A spatial data column restricted to polygon shapes, mapped using the EPSG:32651 coordinate system (in meters). |
+| `FOREIGN KEY (parcel_id) REFERENCES lab6.parcels(parcel_id)` | Links each building's `parcel_id` to an existing parcel, enforcing the rule that a building must belong to a valid parcel. |
+| No comma after the last line | Syntax rule: the final column or constraint definition in a `CREATE TABLE` block shouldn't have a trailing comma. |
+
+- After running the schema.sql, 3 tables were created under the gis_db → Schemas → lab6 → Tables. These are 'parcels', 'buildings' & 'roads'
