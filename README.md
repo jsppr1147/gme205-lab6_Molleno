@@ -45,22 +45,22 @@ Part D: Forward-Engineering the Model to PostGIS
 - For this part, the relational database model is now converted into SQL.
 - a dedicated schema was created, following the template indicated in the lab manual.
 
-CREATE TABLE lab6.buildings (
- building_id TEXT PRIMARY KEY,
- parcel_id TEXT NOT NULL,
- floors INTEGER NOT NULL,
- geom geometry(Polygon, 32651) NOT NULL,
- -- TODO: add the foreign-key constraint
-);
+        CREATE TABLE lab6.buildings (
+                building_id TEXT PRIMARY KEY,
+                parcel_id TEXT NOT NULL,
+                floors INTEGER NOT NULL,
+                geom geometry(Polygon, 32651) NOT NULL,
+                -- TODO: add the foreign-key constraint
+        );
 
 -  the line 'FOREIGN KEY (parcel_id) REFERENCES lab6.parcels(parcel_id)' was replaced in the TODO part of the building tables.
 - Following the template of the structuring of the parcel and building object, the roads object was created. 
 
-CREATE TABLE lab6.roads (
-    road_id    TEXT PRIMARY KEY,
-    road_class TEXT NOT NULL,
-    geom       geometry(LineString, 32651) NOT NULL
-);
+        CREATE TABLE lab6.roads (
+                road_id    TEXT PRIMARY KEY,
+                road_class TEXT NOT NULL,
+                geom       geometry(LineString, 32651) NOT NULL
+        );
 
 - Some key takeaways when writing the sql file:  
 
