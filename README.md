@@ -9,6 +9,7 @@ Part A: Project Setup and Database Preflight
         SELECT current_database();
         SELECT version();
         SELECT postgis_full_version();
+        
 - After all three statements return valid results, the database name and PostGIS version is recorded:
    Database: gis_db
    PostGIS version: "3.6.2 3.6.2"
