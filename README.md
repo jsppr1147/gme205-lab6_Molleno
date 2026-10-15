@@ -34,4 +34,9 @@ Part B: From Objects to Persistent State
 | SpatialRule.evaluate() | **No** | This is just code running a check in the background. It does work during runtime, but it isn't data you store in a table. |
 | Parcel.area_sqm | **No** | Storing this directly isn't needed and can get outdated if geometry changes. We can just calculate the area from the geometry whenever we need it. |
 | MinimumAreaRule._min_area | **No** | Just a rule threshold/config setting |
-| Parcel.intersects() | **No** | Swapped out for PostGIS `ST_Intersects` or `ST_Within` |
+| Parcel.intersects() | **No** | Swapped out for PostGIS `ST_Intersects` or `ST_Within` |  
+
+
+Part C: Converting the Object Model to a Relational Model  
+- for this part, similar to the UML diagrams for the object modeling on lab5, relational database diagrams were created.
+- this is saved in the diagrams folder as 'lab6_relational_model.png'
